@@ -71,7 +71,6 @@ void sadata_push(void *unused)
     struct SAdataMsg sadata;
 
 
-
     while(1) {
         vTaskDelay(pdMS_TO_TICKS(100));
 
@@ -170,6 +169,27 @@ void sadata_push(void *unused)
            sadata.ps[chan].sf_spare = scalefactors[chan].spare;
            sadata.ps[chan].sf_regulator = scalefactors[chan].regulator;
            sadata.ps[chan].sf_error = scalefactors[chan].error;
+
+
+
+           //these are floating points in fpga
+           sadata.ps[chan].dpid_kp = ((MsgUnion){ .u = Xil_In32(base + DPID_KP_REG) }).f;
+           sadata.ps[chan].dpid_ki = ((MsgUnion){ .u = Xil_In32(base + DPID_KI_REG) }).f;
+           sadata.ps[chan].dpid_kd = ((MsgUnion){ .u = Xil_In32(base + DPID_KD_REG) }).f;
+           sadata.ps[chan].dpid_setptin = ((MsgUnion){ .u = Xil_In32(base + DPID_SETPTIN_REG) }).f;
+           sadata.ps[chan].dpid_fdbk = ((MsgUnion){ .u = Xil_In32(base + DPID_FDBK_REG) }).f;
+           sadata.ps[chan].dpid_error = ((MsgUnion){ .u = Xil_In32(base + DPID_ERROR_REG) }).f;
+           sadata.ps[chan].dpid_pterm = ((MsgUnion){ .u = Xil_In32(base + DPID_PTERM_REG) }).f;
+           sadata.ps[chan].dpid_iterm = ((MsgUnion){ .u = Xil_In32(base + DPID_ITERM_REG) }).f;
+           sadata.ps[chan].dpid_dterm = ((MsgUnion){ .u = Xil_In32(base + DPID_DTERM_REG) }).f;
+           sadata.ps[chan].dpid_sumterm = ((MsgUnion){ .u = Xil_In32(base + DPID_SUMTERM_REG) }).f;
+
+           //sadata.ps[chan].dpid_setptout = Xil_In32(base + DPID_SUMTERM_REG);
+           sadata.ps[chan].dpid_setptout = Xil_In32(base + DPID_SETPTOUT_REG);
+           //xil_printf("Set Point Out: %d\r\n",sadata.ps[chan].dpid_setptout);
+
+
+
 
         }
 

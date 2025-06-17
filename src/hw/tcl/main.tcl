@@ -40,7 +40,8 @@ proc setSources {} {
   lappend Sources {"../hdl/ramptable_ramp.vhd" "VHDL 2008"}   
   lappend Sources {"../hdl/smooth_ramp_tb.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/cordic_sine_tb.vhd" "VHDL 2008"}
-  
+  lappend Sources {"../hdl/pid_fp_controller.vhd" "VHDL 2008"}
+  lappend Sources {"../hdl/pid_fp_controller_tb.vhd" "VHDL 2008"}
   
   lappend Sources {"../hdl/fault_module.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/fault_block.vhd" "VHDL 2008"}  
@@ -100,6 +101,11 @@ proc doOnCreate {} {
   source ${TclPath}/evr_gtx.tcl
   source ${TclPath}/cordic_sine.tcl
   source ${TclPath}/gige_pcs_pma.tcl
+  source ${TclPath}/fp_mult.tcl  
+  source ${TclPath}/fp_sub.tcl  
+  source ${TclPath}/fp_add.tcl    
+  source ${TclPath}/fix20_to_float.tcl  
+  source ${TclPath}/float_to_fix20.tcl 
 
   addSources "Sources" 
   
@@ -115,7 +121,9 @@ proc doOnCreate {} {
   set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/smooth_ramp_tb.vhd] 
   set_property used_in_simulation true [get_files ${::fwfwk::SrcPath}/hw/hdl/smooth_ramp_tb.vhd] 
   
-
+  set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/pid_fp_controller_tb.vhd] 
+  set_property used_in_simulation true [get_files ${::fwfwk::SrcPath}/hw/hdl/pid_fp_controller_tb.vhd] 
+  
   
   #get error message, open manually in tcl window for now.
   #open_wave_config "${::fwfwk::SrcPath}/hw/sim/top_tb_behav.wcfg"

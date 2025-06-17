@@ -699,8 +699,46 @@ void chan_settings(u32 chan, void *msg, u32 msglen) {
         	break;
 
 
+        case KP_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_KP_REG + chan*CHBASEADDR, data.u);
+            vTaskDelay(pdMS_TO_TICKS(1));
+            data.u = Xil_In32(XPAR_M_AXI_BASEADDR + DPID_KP_REG + chan*CHBASEADDR);
+            printf("Kp = %8f\n",data.f);
+            break;
 
+        case KI_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_KI_REG + chan*CHBASEADDR, data.u);
+            vTaskDelay(pdMS_TO_TICKS(1));
+            data.u = Xil_In32(XPAR_M_AXI_BASEADDR + DPID_KI_REG + chan*CHBASEADDR);
+            printf("Ki = %8f\n",data.f);
+            break;
 
+        case KD_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_KD_REG + chan*CHBASEADDR, data.u);
+            vTaskDelay(pdMS_TO_TICKS(1));
+            data.u = Xil_In32(XPAR_M_AXI_BASEADDR + DPID_KD_REG + chan*CHBASEADDR);
+            printf("Kd = %8f\n",data.f);
+            break;
+
+        case DPID_ENB_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_ENB_REG + chan*CHBASEADDR, data.u);
+        	xil_printf("Digital PID Enable: %d\r\n",data.u);
+        	break;
+
+        case DPID_PARK_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_PARK_REG + chan*CHBASEADDR, data.u);
+        	xil_printf("Digital PID Park: %d\r\n",data.u);
+        	break;
+
+        case DPID_IRESET_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_IRESET_REG + chan*CHBASEADDR, data.u);
+        	xil_printf("Digital PID Integrator Reset: %d\r\n",data.u);
+        	break;
+
+        case DPID_ILIMIT_MSG:
+        	Xil_Out32(XPAR_M_AXI_BASEADDR + DPID_ILIMIT_REG + chan*CHBASEADDR, data.u);
+        	xil_printf("Digital PID Accum Limit = %d\r\n",data.u);
+        	break;
 
         default:
         	xil_printf("Unsupported Message\r\n");

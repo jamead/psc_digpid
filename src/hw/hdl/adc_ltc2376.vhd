@@ -53,18 +53,18 @@ architecture arch of adc_ltc2376 is
   signal clk_cnt     : std_logic_vector(7 downto 0);  
 
 --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of state  : signal is "true";
-   attribute mark_debug of cnv     : signal is "true";
-   attribute mark_debug of sclk  : signal is "true";
-   attribute mark_debug of sdi     : signal is "true";
-   attribute mark_debug of dcct1  : signal is "true";
-   attribute mark_debug of dcct2  : signal is "true";
-   attribute mark_debug of num_bits     : signal is "true";
-   attribute mark_debug of bit_count     : signal is "true";
-   attribute mark_debug of data_rdy     : signal is "true";
-   attribute mark_debug of start     : signal is "true";
-   attribute mark_debug of shift_reg     : signal is "true";  
+--   attribute mark_debug                 : string;
+--   attribute mark_debug of state  : signal is "true";
+--   attribute mark_debug of cnv     : signal is "true";
+--   attribute mark_debug of sclk  : signal is "true";
+--   attribute mark_debug of sdi     : signal is "true";
+--   attribute mark_debug of dcct1  : signal is "true";
+--   attribute mark_debug of dcct2  : signal is "true";
+--   attribute mark_debug of num_bits     : signal is "true";
+--   attribute mark_debug of bit_count     : signal is "true";
+--   attribute mark_debug of data_rdy     : signal is "true";
+--   attribute mark_debug of start     : signal is "true";
+--   attribute mark_debug of shift_reg     : signal is "true";  
    
 
 begin

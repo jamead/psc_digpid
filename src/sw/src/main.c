@@ -171,6 +171,12 @@ void InitSettingsfromQspi() {
 int main(void) {
 
 	u32 i, base;
+	//float multa = 3.14;
+	//float multb = -1.5;
+	//u32 multres;
+	//MsgUnion multres, multa, multb;
+
+
 
 
     xil_printf("Power Supply Controller\r\n");
@@ -180,10 +186,25 @@ int main(void) {
 	//prog_si570();
 	QspiFlashInit();
 
+   //multa.f = 4.3456;
+   //multb.f = -100.5;
+
+   //base = Xil_In32(XPAR_M_AXI_BASEADDR + DPID_SETPTOUT_REG + 0x200);
+
+	//Xil_Out32(XPAR_M_AXI_BASEADDR + MULTA_REG, multa.u);
+	//Xil_Out32(XPAR_M_AXI_BASEADDR + MULTB_REG, multb.u);
+
+    usleep(100);
+
+
+
+    //multres.u = Xil_In32(XPAR_M_AXI_BASEADDR + MULTRES_REG);
+    //converter.u = multres;
+    //printf("Mult Result = %f\n",multres.f);
+
 
 	//EVR reset
     xil_printf("Resetting EVR GTX...\r\n");
-	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RESET_REG, 0xFF);
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RESET_REG, 0);
 
 	//Set Fault Enable Register - Move to gateware

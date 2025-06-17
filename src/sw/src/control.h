@@ -87,6 +87,16 @@
 
 #define DUMP_ADCS_MSG        500
 
+#define KP_MSG               600
+#define KI_MSG               604
+#define KD_MSG               608
+#define DPID_ENB_MSG         612
+#define DPID_IRESET_MSG      616
+#define DPID_PARK_MSG        620
+#define DPID_ILIMIT_MSG      624
+
+
+
 #define WRITE_RAMPTABLE_MSG  1000
 
 

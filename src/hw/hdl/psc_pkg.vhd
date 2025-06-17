@@ -110,6 +110,42 @@ type t_evr_trigs is record
    ts_ns              : std_logic_vector(31 downto 0);
 end record;  
 
+type t_pid_cntrl_onech is record
+  kp             : std_logic_vector(31 downto 0);
+  ki             : std_logic_vector(31 downto 0);
+  kd             : std_logic_vector(31 downto 0);
+  ireset         : std_logic;
+  ilimit         : std_logic_vector(31 downto 0);
+  park           : std_logic;
+  digpid_enb     : std_logic;
+end record;
+
+type t_pid_cntrl is record
+  ps1           : t_pid_cntrl_onech;
+  ps2           : t_pid_cntrl_onech;
+  ps3           : t_pid_cntrl_onech;
+  ps4           : t_pid_cntrl_onech;
+end record;
+
+type t_pid_stat_onech is record
+  setptin_f      : std_logic_vector(31 downto 0);
+  fdbk_f         : std_logic_vector(31 downto 0);
+  error_f        : std_logic_vector(31 downto 0);
+  pterm_f        : std_logic_vector(31 downto 0);
+  iterm_f        : std_logic_vector(31 downto 0);
+  dterm_f        : std_logic_vector(31 downto 0);
+  sumterm_f      : std_logic_vector(31 downto 0);
+  setptout       : signed(19 downto 0);
+end record;
+
+type t_pid_stat is record
+  ps1           : t_pid_stat_onech;
+  ps2           : t_pid_stat_onech;
+  ps3           : t_pid_stat_onech;
+  ps4           : t_pid_stat_onech;
+end record;
+
+
 
 
 

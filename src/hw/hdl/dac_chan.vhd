@@ -19,13 +19,14 @@ use IEEE.NUMERIC_STD.ALL;
 
 use work.psc_pkg.all;
 
-
-
 entity dac_chan is
   port(
     clk                  : in std_logic; 
     reset                : in std_logic; 
     tenkhz_trig          : in std_logic;
+    dcct_adcs            : in t_dcct_adcs_onech;
+    pid_cntrl            : in t_pid_cntrl_onech;
+	pid_stat             : out t_pid_stat_onech;
     dac_numbits_sel      : in std_logic;
     dac_cntrl            : in t_dac_cntrl_onech;
     dac_stat             : out t_dac_stat_onech;
@@ -38,25 +39,27 @@ end entity;
 architecture arch of dac_chan is
 
 
-type state_type is (IDLE, RUN_RAMP, UPDATE_DAC); 
-
-
+  type state_type is (IDLE, RUN_RAMP, UPDATE_DAC); 
+  signal state             : state_type;
  
-  signal dac_data         : std_logic_vector(19 downto 0);
-  signal dac_rdaddr       : std_logic_vector(15 downto 0);
-  signal dac_rddata       : std_logic_vector(19 downto 0);
-  signal dac_rden         : std_logic;
-  signal ramp_dac_setpt   : signed(19 downto 0);
-  signal smooth_dac_setpt : signed(19 downto 0);
-  signal fofb_dac_setpt   : signed(19 downto 0);
-  signal dac_setpt_raw    : signed(19 downto 0);
-  signal dac_setpt        : signed(19 downto 0);
-  signal ramp_active      : std_logic;
-  signal smooth_active    : std_logic;
-  signal dac_trig         : std_logic;
-  signal gainoff_done     : std_logic;
+  signal dac_data          : std_logic_vector(19 downto 0);
+  signal dac_rdaddr        : std_logic_vector(15 downto 0);
+  signal dac_rddata        : std_logic_vector(19 downto 0);
+  signal dac_rden          : std_logic;
+  signal ramp_dac_setpt    : signed(19 downto 0);
+  signal smooth_dac_setpt  : signed(19 downto 0);
+  signal fofb_dac_setpt    : signed(19 downto 0);
+  signal dac_setpt_raw     : signed(19 downto 0);
+  signal dac_setpt         : signed(19 downto 0);
+  signal ramp_active       : std_logic;
+  signal smooth_active     : std_logic;
+  signal dac_trig          : std_logic;
+  signal gainoff_done      : std_logic;
   
-  signal state : state_type;
+  signal dac_setpt_gainoff : signed(19 downto 0); 
+  signal dac_setpt_digital : signed(19 downto 0);  
+  
+
 
 
 
@@ -68,12 +71,13 @@ type state_type is (IDLE, RUN_RAMP, UPDATE_DAC);
    attribute mark_debug of dac_setpt: signal is "true";
    attribute mark_debug of ramp_active: signal is "true";  
    attribute mark_debug of smooth_active: signal is "true";   
+   
 
 
 begin
 
 --status readbacks
-dac_stat.dac_setpt <= dac_setpt;
+dac_stat.dac_setpt <= dac_setpt; --dac_setpt_gainoff;
 dac_stat.active <= ramp_active or smooth_active;
 
 
@@ -123,15 +127,13 @@ smoothmode: entity work.smooth_ramp
     clk => clk,
     reset => reset,
     tenkhz_trig => tenkhz_trig,
-    cur_setpt => dac_setpt, --dac_cntrl.smooth_oldsetpt, --20d"0",
+    cur_setpt => dac_setpt_gainoff, --dac_cntrl.smooth_oldsetpt, --20d"0",
     new_setpt => dac_cntrl.setpoint, --dac_cntrl.smooth_newsetpt, --20d"10000",
     phase_inc => dac_cntrl.smooth_phaseinc, 
     smooth_active => smooth_active,
     rampout => smooth_dac_setpt
 );
  
-  
-  
  
 -- apply gain and offsets 
 gainoff_dac : entity work.dac_gainoffset
@@ -142,12 +144,29 @@ gainoff_dac : entity work.dac_gainoffset
     numbits_sel => dac_numbits_sel,
     dac_setpt_raw => dac_setpt_raw,
     dac_cntrl => dac_cntrl,
-    dac_setpt => dac_setpt,
+    dac_setpt => dac_setpt_gainoff,
     done => gainoff_done
 );
   
+ 
+--Digital Control Loop
+dig_loop : entity work.pid_fp_controller
+port map(
+    clk => clk, 
+    rst => reset, 
+    start => gainoff_done, 
+    pid_cntrl => pid_cntrl,
+	pid_stat => pid_stat,   
+    setpoint => dac_setpt_gainoff,
+    feedback => dcct_adcs.dcct0, 
+    control_out => dac_setpt_digital,
+    done => open
+);  
   
-
+  
+dac_setpt <= dac_setpt_gainoff when pid_cntrl.digpid_enb = '0' else dac_setpt_digital;  
+  
+  
 -- select 18 bit or 20 bit, put hard limits on dac
 dac_data <= std_logic_vector(dac_setpt) when dac_numbits_sel = '1' else std_logic_vector((dac_setpt(17 downto 0) & "00"));
 

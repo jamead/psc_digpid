@@ -92,8 +92,21 @@
 #define SMOOTH_OLDSETPT_REG      0x108
 #define SMOOTH_PHASEINC_REG      0x10C
 
-
-
+#define DPID_KP_REG              0x140
+#define DPID_KI_REG              0x144
+#define DPID_KD_REG              0x148
+#define DPID_PARK_REG            0x14C
+#define DPID_ENB_REG             0x150
+#define DPID_ILIMIT_REG          0x154
+#define DPID_IRESET_REG          0x158
+#define DPID_SETPTIN_REG         0x170    // Set Point input to Digital PID (after fixedtofloat)
+#define DPID_FDBK_REG            0x174    // Feedback (DCCT) input to Digital PID (after fixedtofloat)
+#define DPID_ERROR_REG           0x178
+#define DPID_PTERM_REG           0x17C
+#define DPID_ITERM_REG           0x180
+#define DPID_DTERM_REG           0x184
+#define DPID_SUMTERM_REG         0x188
+#define DPID_SETPTOUT_REG        0x18C    // DAC Setpoint output from Digital PID (after float2fixed)
 
 
 #define SNAPSHOT_ADDRPTR         0xA00     // Snapshot 20 sec circular buffer current address pointer

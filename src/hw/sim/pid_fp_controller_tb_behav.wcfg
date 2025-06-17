@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="pid_fp_controller_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="pid_fp_controller_tb" />
+            <top_module name="psc_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="382.420001 us"></ZoomEndTime>
+      <Cursor1Time time="1.110000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="369"></NameColumnWidth>
+      <ValueColumnWidth column_width="147"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="26" />
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl">
+      <obj_property name="ElementShortName">pid_cntrl</obj_property>
+      <obj_property name="ObjectShortName">pid_cntrl</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl.kp">
+         <obj_property name="ElementShortName">.kp[31:0]</obj_property>
+         <obj_property name="ObjectShortName">.kp[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl.ki">
+         <obj_property name="ElementShortName">.ki[31:0]</obj_property>
+         <obj_property name="ObjectShortName">.ki[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl.kd">
+         <obj_property name="ElementShortName">.kd[31:0]</obj_property>
+         <obj_property name="ObjectShortName">.kd[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl.ilimit_pos">
+         <obj_property name="ElementShortName">.ilimit_pos[31:0]</obj_property>
+         <obj_property name="ObjectShortName">.ilimit_pos[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/pid_fp_controller_tb/pid_cntrl.ilimit_neg">
+         <obj_property name="ElementShortName">.ilimit_neg[31:0]</obj_property>
+         <obj_property name="ObjectShortName">.ilimit_neg[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/pid_fp_controller_tb/pid_cntrl.park">
+         <obj_property name="ElementShortName">.park</obj_property>
+         <obj_property name="ObjectShortName">.park</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/pid_fp_controller_tb/pid_cntrl.digpid_enb">
+         <obj_property name="ElementShortName">.digpid_enb</obj_property>
+         <obj_property name="ObjectShortName">.digpid_enb</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/setpoint">
+      <obj_property name="ElementShortName">setpoint[19:0]</obj_property>
+      <obj_property name="ObjectShortName">setpoint[19:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">19</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/feedback">
+      <obj_property name="ElementShortName">feedback[19:0]</obj_property>
+      <obj_property name="ObjectShortName">feedback[19:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">19</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/uut/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/uut/err_int_valid">
+      <obj_property name="ElementShortName">err_int_valid</obj_property>
+      <obj_property name="ObjectShortName">err_int_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/uut/iterm_valid">
+      <obj_property name="ElementShortName">iterm_valid</obj_property>
+      <obj_property name="ObjectShortName">iterm_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider29" type="divider">
+      <obj_property name="label">Convert to Float</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/setpt_f">
+      <obj_property name="ElementShortName">setpt_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">setpt_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/fdbk_f">
+      <obj_property name="ElementShortName">fdbk_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fdbk_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider13" type="divider">
+      <obj_property name="label">Proportional</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/err_f">
+      <obj_property name="ElementShortName">err_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">err_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/pterm_f">
+      <obj_property name="ElementShortName">pterm_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pterm_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider14" type="divider">
+      <obj_property name="label">Integral</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pid_fp_controller_tb/uut/err_valid">
+      <obj_property name="ElementShortName">err_valid</obj_property>
+      <obj_property name="ObjectShortName">err_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/err_f">
+      <obj_property name="ElementShortName">err_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">err_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/err_int_prev_f">
+      <obj_property name="ElementShortName">err_int_prev_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">err_int_prev_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/err_int_f">
+      <obj_property name="ElementShortName">err_int_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">err_int_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/iterm_f">
+      <obj_property name="ElementShortName">iterm_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">iterm_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider18" type="divider">
+      <obj_property name="label">Sum</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/pid_sum_f">
+      <obj_property name="ElementShortName">pid_sum_f[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pid_sum_f[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider17" type="divider">
+      <obj_property name="label">Output</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/uut/setptout_fp">
+      <obj_property name="ElementShortName">setptout_fp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">setptout_fp[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pid_fp_controller_tb/control_out">
+      <obj_property name="ElementShortName">control_out[19:0]</obj_property>
+      <obj_property name="ObjectShortName">control_out[19:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="AnalogYRangeMin">-27500</obj_property>
+      <obj_property name="AnalogYRRangeMax">12863</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+   </wvobject>
+</wave_config>

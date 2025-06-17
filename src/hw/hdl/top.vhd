@@ -165,6 +165,9 @@ architecture behv of top is
    signal dig_cntrl             : t_dig_cntrl;
    signal dig_stat              : t_dig_stat;
    
+   signal pid_cntrl             : t_pid_cntrl;
+   signal pid_stat              : t_pid_stat;
+   
    signal accum_done            : std_logic_vector(3 downto 0);
    
    signal dac_cntrl             : t_dac_cntrl;
@@ -293,6 +296,9 @@ write_dacs: entity work.dac_ctrlr
     clk => pl_clk0,  
     reset => pl_reset, 
     tenkhz_trig => tenkhz_trig,
+    dcct_adcs => dcct_adcs,  
+    pid_cntrl => pid_cntrl,
+    pid_stat => pid_stat,      
     dac_cntrl => dac_cntrl,
     dac_stat => dac_stat,  	
     sync => stpt_dac_sync,  
@@ -398,6 +404,8 @@ ps_regs: entity work.ps_io
     dig_stat => dig_stat,
     fault_params => fault_params,
     fault_stat => fault_stat,
+    pid_cntrl => pid_cntrl,
+    pid_stat => pid_stat,
     ioc_access_led => ioc_access_led,
     tenhz_datasend_led => tenhz_datasend_led               
   );

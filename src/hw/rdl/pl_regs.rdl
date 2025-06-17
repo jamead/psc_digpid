@@ -639,6 +639,132 @@ reg {
     default swmod=true;    
     field {} val[32];
   } ps1_dac_smooth_phaseinc @0x304;
+  
+
+/* Digital PID */
+  
+reg {
+    desc="PS1 Kp";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps1_kp @0x340;  
+  
+reg {
+    desc="PS1 Ki";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps1_Ki @0x344; 
+  
+reg {
+    desc="PS1 Kd";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps1_Kd @0x348;
+  
+reg {
+    desc="PS1 Park";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps1_park @0x34C;  
+  
+reg {
+    desc="PS1 Digital Loop Enable";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps1_digpid_enb @0x350;   
+   
+reg {
+    desc="PS1 Integrator Limit";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps1_iterm_limit @0x354;  
+   
+reg {
+    desc="PS1 Reset Integrator";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps1_digpid_ireset @0x358;     
+  
+reg {
+    desc="PS1 SetPoint In";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_setpt_in @0x370;   
+
+
+reg {
+    desc="PS1 Feedback";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_feedback @0x374;
+  
+reg {
+    desc="PS1 Error";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_error @0x378;
+    
+reg {
+    desc="PS1 P Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_pterm @0x37C; 
+  
+reg {
+    desc="PS1 I Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_iterm @0x380; 
+
+reg {
+    desc="PS1 D Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_dterm @0x384; 
+
+reg {
+    desc="PS1 Sum Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_sumterm @0x388; 
+
+reg {
+    desc="PS1 SetPoint Out";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps1_setpt_out @0x38C; 
+
+
+
 
 
 
@@ -1131,6 +1257,136 @@ reg {
     default swmod=true;    
     field {} val[32];
   } ps2_dac_smooth_phaseinc @0x504;
+
+
+/* Digital PID */
+  
+reg {
+    desc="PS2 Kp";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps2_kp @0x540;  
+  
+reg {
+    desc="PS2 Ki";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps2_Ki @0x544; 
+  
+reg {
+    desc="PS2 Kd";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps2_Kd @0x548;
+  
+reg {
+    desc="PS2 Park";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps2_park @0x54C;  
+  
+reg {
+    desc="PS2 Digital Loop Enable";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps2_digpid_enb @0x550;   
+  
+  
+reg {
+    desc="PS2 Integrator Limit";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps2_iterm_limit @0x554;  
+  
+reg {
+    desc="PS2 Reset Integrator";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps2_digpid_ireset @0x558;     
+  
+  
+reg {
+    desc="PS2 SetPoint In";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_setpt_in @0x570;   
+
+
+reg {
+    desc="PS2 Feedback";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_feedback @0x574;
+  
+reg {
+    desc="PS2 Error";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_error @0x578;
+    
+reg {
+    desc="PS2 P Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_pterm @0x57C; 
+  
+reg {
+    desc="PS2 I Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_iterm @0x580; 
+
+reg {
+    desc="PS2 D Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_dterm @0x584; 
+
+reg {
+    desc="PS2 Sum Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_sumterm @0x588; 
+
+reg {
+    desc="PS2 SetPoint Out";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps2_setpt_out @0x58C; 
+
+
+
+
+
 
 
 
@@ -1627,6 +1883,135 @@ reg {
 
 
 
+
+/* Digital PID */
+  
+reg {
+    desc="PS3 Kp";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps3_kp @0x740;  
+  
+reg {
+    desc="PS3 Ki";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps3_Ki @0x744; 
+  
+reg {
+    desc="PS3 Kd";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps3_Kd @0x748;
+  
+reg {
+    desc="PS3 Park";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps3_park @0x74C;  
+  
+reg {
+    desc="PS3 Digital Loop Enable";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps3_digpid_enb @0x750;   
+  
+  
+reg {
+    desc="PS3 Integrator Limit";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps3_iterm_limit @0x754;  
+  
+reg {
+    desc="PS3 Reset Integrator";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps3_digpid_ireset @0x758;     
+  
+  
+reg {
+    desc="PS3 SetPoint In";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_setpt_in @0x770;   
+
+
+reg {
+    desc="PS3 Feedback";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_feedback @0x774;
+  
+reg {
+    desc="PS3 Error";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_error @0x778;
+    
+reg {
+    desc="PS3 P Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_pterm @0x77C; 
+  
+reg {
+    desc="PS3 I Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_iterm @0x780; 
+
+reg {
+    desc="PS3 D Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_dterm @0x784; 
+
+reg {
+    desc="PS3 Sum Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_sumterm @0x788; 
+
+reg {
+    desc="PS3 SetPoint Out";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps3_setpt_out @0x78C; 
+
+
+
+
+
 /**** Channel 4 *****/
 
 /* 10Hz Data  */
@@ -2119,6 +2504,135 @@ reg {
     default swmod=true;    
     field {} val[32];
   } ps4_dac_smooth_phaseinc @0x904;
+
+
+/* Digital PID */
+  
+reg {
+    desc="PS4 Kp";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps4_kp @0x940;  
+  
+reg {
+    desc="PS4 Ki";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps4_Ki @0x944; 
+  
+reg {
+    desc="PS4 Kd";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps4_Kd @0x948;
+  
+reg {
+    desc="PS4 Park";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps4_park @0x94C;  
+  
+reg {
+    desc="PS4 Digital Loop Enable";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps4_digpid_enb @0x950;   
+  
+reg {
+    desc="PS4 Integrator Limit";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[32];
+  } ps4_iterm_limit @0x954;  
+  
+reg {
+    desc="PS4 Reset Integrator";
+    default sw = rw;
+    default hw = r;
+    default swacc=true;
+    default swmod=true;    
+    field {} val[1];
+  } ps4_digpid_ireset @0x958;    
+  
+  
+reg {
+    desc="PS4 SetPoint In";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_setpt_in @0x970;   
+
+
+reg {
+    desc="PS4 Feedback";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_feedback @0x974;
+  
+reg {
+    desc="PS4 Error";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_error @0x978;
+    
+reg {
+    desc="PS4 P Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_pterm @0x97C; 
+  
+reg {
+    desc="PS4 I Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_iterm @0x980; 
+
+reg {
+    desc="PS4 D Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_dterm @0x984; 
+
+reg {
+    desc="PS4 Sum Term";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_sumterm @0x988; 
+
+reg {
+    desc="PS4 SetPoint Out";
+    default sw = rw;
+    default hw = w; 
+    field {} val[32];
+  } ps4_setpt_out @0x98C; 
+
+
+
+
+
 
 
 
