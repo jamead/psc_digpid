@@ -94,8 +94,8 @@ fdbk_conv : entity work.fix20_to_float
   );
   
 
---Error = setpoint - feedback
-error_term : entity work.fp_sub
+--Error = setpoint + feedback (dcct is negative)
+error_term : entity work.fp_add
   PORT MAP (
     aclk => clk,
     s_axis_a_tvalid => start, --'1',

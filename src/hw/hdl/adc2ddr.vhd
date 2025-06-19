@@ -10,6 +10,7 @@ entity axi4_write_adc is
     clk             : in std_logic;
     reset           : in std_logic;
     trigger         : in std_logic;  -- 10 kHz trigger
+    pid_cntrl       : t_pid_cntrl;
 
     s_axi4_m2s     : out t_pl_snapshot_axi4_m2s;
     s_axi4_s2m     : in t_pl_snapshot_axi4_s2m;
@@ -17,6 +18,7 @@ entity axi4_write_adc is
     dcct_adcs        : in t_dcct_adcs;
     mon_adcs         : in t_mon_adcs;
     dac_stat         : in t_dac_stat;
+    pid_stat         : in t_pid_stat;
 	ss_buf_stat      : out t_snapshot_stat        
     );
 end entity axi4_write_adc;
@@ -125,9 +127,21 @@ begin
           when PS1_MON1 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.dacmon), 32)), PS1_MON2);          
           when PS1_MON2 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.voltage), 32)), PS1_MON3);   
           when PS1_MON3 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.ignd), 32)), PS1_MON4);   
-          when PS1_MON4 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.spare), 32)), PS1_MON5);            
-          when PS1_MON5 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.ps_reg), 32)), PS1_MON6);   
-          when PS1_MON6 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.ps_error), 32)), PS2_DCCT1);   
+          when PS1_MON4 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.spare), 32)), PS1_MON5);  
+                   
+          when PS1_MON5 => 
+            if (pid_cntrl.ps1.digpid_enb = '0') then
+                write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.ps_reg), 32)), PS1_MON6);   
+            else
+                 write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(pid_stat.ps1.setptout), 32)), PS1_MON6);
+            end if;
+          
+          when PS1_MON6 => 
+            if (pid_cntrl.ps1.digpid_enb = '0') then   
+                write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(mon_adcs.ps1.ps_error), 32)), PS2_DCCT1);   
+            else
+                write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(pid_stat.ps1.error_f), 32)), PS2_DCCT1); 
+            end if;
 
           when PS2_DCCT1 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(dcct_adcs.ps2.dcct0), 32)), PS2_DCCT2); 
           when PS2_DCCT2 => write_word(s_axi4_m2s.wdata, s_axi4_m2s.wvalid, state, std_logic_vector(resize(signed(dcct_adcs.ps2.dcct1), 32)), PS2_MON1); 

@@ -416,12 +416,14 @@ adc2ddr : entity work.axi4_write_adc
   port map (
     clk => pl_clk0,
     reset => pl_reset,
-    trigger => tenkhz_trig, 
+    trigger => tenkhz_trig,
+    pid_cntrl => pid_cntrl, 
     s_axi4_m2s => s_axi4_m2s,
     s_axi4_s2m => s_axi4_s2m,
     dcct_adcs => dcct_adcs,
     mon_adcs => mon_adcs,
     dac_stat => dac_stat,
+    pid_stat => pid_stat,
     ss_buf_stat => ss_buf_stat       
   );
 

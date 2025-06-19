@@ -12,6 +12,13 @@
 #include "pl_regs.h"
 
 
+typedef union {
+    u32 u;
+    float f;
+    s32 i;
+} t_ss_union;
+
+
 extern ScaleFactorType scalefactors[4];
 extern float CONVDACBITSTOVOLTS;
 
@@ -88,6 +95,15 @@ static
 void CopyDataChan(float **msg_ptr, u32 *buf_data, u32 numwords, int chan) {
 
 	u32 i;
+	u32 digpid;
+
+	digpid = Xil_In32(XPAR_M_AXI_BASEADDR + DPID_ENB_REG + chan*CHBASEADDR);
+    xil_printf("Chan: %d  Dig PID Enable: %d\r\n",chan,digpid);
+
+
+
+
+
 
 	//inject some errors at sample 30000 for DCCT1 & DCCT2 for testing
     //buf_data[30000*40+2] = 0;
@@ -151,10 +167,19 @@ void CopyDataChan(float **msg_ptr, u32 *buf_data, u32 numwords, int chan) {
                 (*msg_ptr)++;
                 **msg_ptr = (float)(s32)(buf_data[i+7]) * CONV16BITSTOVOLTS * scalefactors[chan-1].spare;   //Spare Monitor
                 (*msg_ptr)++;
-                **msg_ptr = (float)(s32)(buf_data[i+8]) * CONV16BITSTOVOLTS * scalefactors[chan-1].regulator;   //Regulator
-                (*msg_ptr)++;
-                **msg_ptr = (float)(s32)(buf_data[i+9]) * CONV16BITSTOVOLTS * scalefactors[chan-1].error;   //Error
-                (*msg_ptr)++;
+                if (digpid == 1) {
+                    **msg_ptr = (float)(s32)(buf_data[i+8]);   //Regulator (in ADC bits)
+                    (*msg_ptr)++;
+                    memcpy(*msg_ptr, &buf_data[i + 9], sizeof(float)); //Error is a IEEE754 float
+                    (*msg_ptr)++;
+                }
+                else {
+                	**msg_ptr = (float)(s32)(buf_data[i+8]) * CONV16BITSTOVOLTS * scalefactors[chan-1].regulator;   //Regulator
+                	(*msg_ptr)++;
+                	**msg_ptr = (buf_data[i+9]) * CONV16BITSTOVOLTS * scalefactors[chan-1].error;   //Error
+                    (*msg_ptr)++;
+                }
+
                 // check for any zeros
                 //for (j=0; j<39; j++) {
           		//  if (buf_data[i+j] == 0)
@@ -187,6 +212,7 @@ void CopyDataChan(float **msg_ptr, u32 *buf_data, u32 numwords, int chan) {
                 (*msg_ptr)++;
                 **msg_ptr = (float)(s32)(buf_data[i+17]) * CONV16BITSTOVOLTS * scalefactors[chan-1].error;   //Error
                 (*msg_ptr)++;
+
             }
             break;
 
